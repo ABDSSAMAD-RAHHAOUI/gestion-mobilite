@@ -58,7 +58,7 @@
 						int currentYear = Year.now().getValue();
 					%>
 
-					<option value="<%= currentYear %>">-- Sélectionner une année --</option>
+					<option value="<%= currentYear %>">-- année actuelle --</option>
 					<%
 						for (int year = currentYear-5; year <= currentYear + 5; year++) {
 					%>

@@ -26,4 +26,8 @@ public class EtudiantService {
     public Etudiant enregistreEtudiant(Etudiant etudiant) {
         return etudiantRepository.save(etudiant);
     }
+
+    public Etudiant findByMail(String mail) {
+        return etudiantRepository.findByMailEtudiant(mail);
+    }
 }

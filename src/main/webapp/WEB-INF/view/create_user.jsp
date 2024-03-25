@@ -41,7 +41,7 @@
 					type="password" class="form-control" id="password"
 					placeholder="Type user password" name="password">
 			</div>
-			<div>
+			<div class="mb-3">
 				<label>Select Your Diplome</label>
 				<select class="form-control" name="diplome">
 					<option value="">-- Select Your Diplome --</option>
@@ -51,26 +51,21 @@
 				</select>
 			</div>
 
-			<div>
+			<div class="mb-3">
+				<label>choisi votre anee</label>
 				<select class="form-control" name="annee">
-					<label>choisi votre anee</label>
-					<option>-- Sélectionner une année --</option>
 					<%
 						int currentYear = Year.now().getValue();
+					%>
+
+					<option value="<%= currentYear %>">-- Sélectionner une année --</option>
+					<%
 						for (int year = currentYear-5; year <= currentYear + 5; year++) {
 					%>
 					<option value="<%= year %>"><%= year %></option>
 					<% } %>
 				</select>
 			</div>
-
-
-
-
-
-
-
-
 
 			<div>
 				<button type="submit" class="btn btn-success mt-5">Save</button>

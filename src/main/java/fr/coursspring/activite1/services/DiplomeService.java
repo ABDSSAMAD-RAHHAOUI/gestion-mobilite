@@ -19,4 +19,8 @@ public class DiplomeService {
         return diplomeRepository.findAll();
     }
 
+    public List<Diplome> getDiplomeByProgramme(Long codeProgramme) {
+        return diplomeRepository.findDiplomeByPrograme(codeProgramme);
+    }
+
 }

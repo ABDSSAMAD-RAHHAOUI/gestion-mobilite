@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ContratRepository extends JpaRepository<Contrat, Long> {
 
-    @Query("SELECT c FROM Contrat c JOIN c.demandeMobilite d WHERE d.etatDemandeM = 'accepter'")
-    public List<Contrat> findContratsByDemandeMobilite(String codeDemandeMobilite);
+    @Query("SELECT c FROM Contrat c JOIN c.demandeMobilite d JOIN d.etudiant e WHERE d.etatDemandeM = 'accepter' AND e.numEtudiant = :userId")
+    public List<Contrat> getContratsAccepterByUserId(Long userId);
 
 }

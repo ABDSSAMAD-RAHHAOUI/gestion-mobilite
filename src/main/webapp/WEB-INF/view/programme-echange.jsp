@@ -21,15 +21,21 @@
         <th scope="col">université</th>
         <th scope="col">diplome</th>
         <th scope="col">cours</th>
+        <th scope="col">action</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${programmes}" var="programme">
         <tr>
-            <td>${programme.nomProgramme}</td>
-            <td>${programme.diplome1.universite.nomU}</td>
-            <td>${programme.diplome1.nomDiplome}</td>
-            <td>${programme.diplome1.nomDiplome}</td>
+            <td>${programme.libelleProgramme}</td>
+            <td>${programme.universite}</td>
+            <td>${programme.libelleDiplome}</td>
+            <td>
+                <c:forEach items="${programme.cours}" var="cour">
+                    ${cour.libelleCours}<br>
+                </c:forEach>
+            </td>
+            <td><a href="/create-DM?programId=${programme.codeProgramme}">Demande mobilité</a></td>
         </tr>
     </c:forEach>
     </tbody>

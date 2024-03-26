@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProgrammeRepository extends JpaRepository<Programme, Long> {
-    @Query("SELECT p FROM Programme p WHERE p.diplome.codeDiplome = ?1")
+    @Query("SELECT p FROM Programme p WHERE p.diplome.codeDiplome = ?1 or p.diplome1.codeDiplome = ?1")
     List<Programme> findByCodeDiplome(Long codeDiplome);
 }

@@ -28,7 +28,7 @@
         <a class="nav-link" href="/contrat"> Contrat </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="demande-financiere"> Demandes financières </a>
+        <a class="nav-link" href="/demande-financiere"> Demandes financières </a>
       </li>
     </ul>
   </div>

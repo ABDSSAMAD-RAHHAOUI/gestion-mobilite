@@ -46,7 +46,7 @@
 				<select class="form-control" name="diplome">
 					<option value="">-- Select Your Diplome --</option>
 					<c:forEach items="${diplomes}" var="diplome">
-						<option value="${diplome.codeDiplome}">${diplome.nomDiplome} - ${diplome.niveauDiplome}</option>
+						<option value="${diplome.codeDiplome}">${diplome.nomDiplome} - ${diplome.niveauDiplome} - ${diplome.universite.nomU}</option>
 					</c:forEach>
 				</select>
 			</div>

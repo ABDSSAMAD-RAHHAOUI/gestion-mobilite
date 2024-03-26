@@ -12,5 +12,4 @@ public interface ConcernerRepository extends JpaRepository<Concerner, ConcernerI
 
     @Query("select c.cours from Concerner c where c.id.codeDemandeM = ?1")
     List<Cour> getCourByDemandeMobilite_CodeDemandeM(Long codeDemandeM);
-
 }

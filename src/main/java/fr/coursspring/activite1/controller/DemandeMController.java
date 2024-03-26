@@ -1,10 +1,8 @@
 package fr.coursspring.activite1.controller;
 
-import fr.coursspring.activite1.modal.Cour;
-import fr.coursspring.activite1.modal.Programme;
+import fr.coursspring.activite1.modal.*;
 import fr.coursspring.activite1.services.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class DemandeMController {
@@ -36,7 +35,7 @@ public class DemandeMController {
 
 
 
-    @GetMapping("/demandeM")
+    @GetMapping("/demande-mobilite")
     public String demandeM(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         Cookie cookiemail= null;
@@ -91,8 +90,38 @@ public class DemandeMController {
     }
 
     @PostMapping("/save-DM")
-    public String createDemandeMobilite(@RequestParam("coursIds") Long[] coursIds) {
-        System.out.println(coursIds);
+    @Transactional
+    public String createDemandeMobilite(@RequestParam("coursIds") Long[] coursIds,@RequestParam("codeProgramme") Long codeProgramme, HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+        Cookie cookiemail= null;
+        Cookie cokieloggedIn = null;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("mail")) {
+                cookiemail = cookie;
+            }
+            if (cookie.getName().equals("loggedIn")) {
+                cokieloggedIn = cookie;
+            }
+        }
+
+        if (cookies != null) {
+            if (cokieloggedIn.getName().equals("loggedIn") && cokieloggedIn.getValue().equals("true")) {
+                DemandeMobilite demandeMobilite = new DemandeMobilite();
+                demandeMobilite.setProgramme(programmeService.findByCodeProgramme(codeProgramme));
+                demandeMobilite.setEtudiant(etudiantService.findByMail(cookiemail.getValue()));
+                demandeMobilite.setDateDepotDemandeM(Date.from(new java.util.Date().toInstant()).toString());
+                demandeMobilite.setEtatDemandeM("En attente");
+
+                demandeMobilite = demandeMService.saveDemandeMobilite(demandeMobilite);
+
+                for (Long coursId : coursIds) {
+
+                    concernerService.saveConcerner(new Concerner(new ConcernerId(demandeMobilite.getCodeDemandeM(),coursId),courService.findByCodeCours(coursId),demandeMobilite));
+                }
+            }
+        }
+
         return "redirect:/programme-echange";
     }
 

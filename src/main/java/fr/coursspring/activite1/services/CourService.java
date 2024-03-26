@@ -20,4 +20,7 @@ public class CourService {
         return courRepository.findByLibelleCours(idDiplome);
     }
 
+    public Cour findByCodeCours(Long coursId) {
+        return courRepository.findById(coursId).orElse(null);
+    }
 }

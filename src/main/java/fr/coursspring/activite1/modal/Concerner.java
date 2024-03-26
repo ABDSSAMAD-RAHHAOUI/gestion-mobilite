@@ -9,6 +9,15 @@ public class Concerner {
     @EmbeddedId
     private ConcernerId id;
 
+    public Concerner(ConcernerId id, Cour cours, DemandeMobilite demandeMobilite) {
+        this.id = id;
+        this.cours = cours;
+        this.demandeMobilite = demandeMobilite;
+    }
+
+    public Concerner() {
+    }
+
     @ManyToOne
     @MapsId("codeCours")
     @JoinColumn(name = "codeCours")

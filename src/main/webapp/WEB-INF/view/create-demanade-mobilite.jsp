@@ -21,6 +21,10 @@
     <form action="/save-DM" method="post">
 
         <div class="mb-3">
+            <input type="hidden" name="codeProgramme" value="${programme.codeProgramme}">
+        </div>
+
+        <div class="mb-3">
             <label for="mailEtudiant" class="form-label">Programme : </label>
             <input disabled type="text"
                    class="form-control" id="mailEtudiant" placeholder="ecrire votre email" name="mailEtudiant" value="${programme.libelleProgramme}" required="required">

@@ -23,4 +23,8 @@ public class ProgrammeService {
     public List<Programme> findByCodeDiplome(Long codeDiplome) {
         return programmeRepository.findByCodeDiplome(codeDiplome);
     }
+
+    public Programme findByCodeProgramme(Long codeProgramme) {
+        return programmeRepository.findById(codeProgramme).orElse(null);
+    }
 }

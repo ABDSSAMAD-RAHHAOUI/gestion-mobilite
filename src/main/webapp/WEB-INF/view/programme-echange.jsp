@@ -35,7 +35,7 @@
                     ${cour.libelleCours}<br>
                 </c:forEach>
             </td>
-            <td><a href="/create-DM?programId=${programme.codeProgramme}">Demande mobilité</a></td>
+            <td><a href="/create-DM/${programme.codeProgramme}">Demande mobilité</a></td>
         </tr>
     </c:forEach>
     </tbody>

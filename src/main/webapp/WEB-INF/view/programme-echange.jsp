@@ -25,6 +25,19 @@
     </tr>
     </thead>
     <tbody>
+    <c:if test="${empty programmes}">
+        <tr>
+            <td colspan="5">Aucun programme disponible</td>
+        </tr>
+    </c:if>
+    <c:if test="${not empty sessionScope.message}">
+
+        <div class= "alert alert-danger">
+            <c:out value="${sessionScope.message}"></c:out>
+        </div>
+
+    </c:if>
+
     <c:forEach items="${programmes}" var="programme">
         <tr>
             <td>${programme.libelleProgramme}</td>

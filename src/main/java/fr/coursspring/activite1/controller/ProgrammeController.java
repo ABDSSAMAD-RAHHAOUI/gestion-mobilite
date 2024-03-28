@@ -42,7 +42,6 @@ public class ProgrammeController {
                                     }
                             });
                     request.setAttribute("programmes", programmes);
-                    System.out.println(programmes);
                 }
             }
         }

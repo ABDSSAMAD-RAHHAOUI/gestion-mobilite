@@ -19,6 +19,9 @@ public class DemandeMService {
         return demandeMRepository.getDemandeMobiliteByEtudiant_NumEtudiant(idEtudiant);
     }
 
+    public DemandeMobilite getDemandeMobilitebyProgrammeANDEtudiant(Long codeProgramme, Long numEtudiant) {
+        return demandeMRepository.getDemandeMobilitebyProgrameANDEtudiant(codeProgramme, numEtudiant);
+    }
 
     public DemandeMobilite saveDemandeMobilite(DemandeMobilite demandeMobilite) {
         return demandeMRepository.save(demandeMobilite);

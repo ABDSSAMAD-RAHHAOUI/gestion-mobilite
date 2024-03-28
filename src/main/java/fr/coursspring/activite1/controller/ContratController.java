@@ -45,6 +45,7 @@ public class ContratController {
 
         if (cookies != null) {
             if (cokieloggedIn.getName().equals("loggedIn") && cokieloggedIn.getValue().equals("true")) {
+                var etudiant=contratService.getContratsAccepterByUserId(etudiantService.findByMail(cookiemail.getValue()).getNumEtudiant());
                 request.setAttribute("contrat", contratService.getContratsAccepterByUserId(etudiantService.findByMail(cookiemail.getValue()).getNumEtudiant()));
                 return "contrat";
             }

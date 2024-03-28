@@ -77,16 +77,25 @@ public class DemandeMController {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("mail")) {
                     ProgrameDTO programme = null;
+
+                    if(demandeMService.getDemandeMobilitebyProgrammeANDEtudiant(programId,etudiantService.findByMail(cookie.getValue()).getNumEtudiant())!=null){
+                        request.getSession().setAttribute("message", "Vous avez déjà fait une demande pour ce programme");
+                        return "redirect:/programme-echange";
+                    }
+
                     if (!program.getDiplome().getCodeDiplome().equals(etudiantService.findByMail(cookie.getValue()).getDiplome().getCodeDiplome())) {
                         programme =new ProgrameDTO(program.getCodeProgramme(), program.getNomProgramme(), program.getDiplome().getCodeDiplome(), program.getDiplome().getNomDiplome(), courService.getCoursByDiplom(program.getDiplome().getCodeDiplome()),program.getDiplome().getUniversite().getNomU());
                     }else {
                         programme =new ProgrameDTO(program.getCodeProgramme(), program.getNomProgramme(), program.getDiplome1().getCodeDiplome(), program.getDiplome1().getNomDiplome(), courService.getCoursByDiplom(program.getDiplome1().getCodeDiplome()),program.getDiplome1().getUniversite().getNomU());
                     }
                     request.setAttribute("programme", programme);
+                    return "create-demanade-mobilite";
                 }
+
             }
         }
-        return "create-demanade-mobilite";
+        return "redirect:/login";
+
     }
 
     @PostMapping("/save-DM")
